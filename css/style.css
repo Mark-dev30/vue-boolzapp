@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ----- STRUCTURE ----- */
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(213,219,216);
+    background: linear-gradient(0deg, rgba(213,219,216,1) 80%, rgba(0,150,136,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-card{
+    width: 90%;
+    height: 90%;
+    background-color: grey;
+}
+
+
+
