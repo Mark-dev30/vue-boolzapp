@@ -3,6 +3,7 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
+        textsearch:"",
         textMessage:"",
         activeContact: 0,
         contacts: [
@@ -172,9 +173,28 @@ const { createApp } = Vue
       }
     },
     methods:{
+
+        searchContact(){
+            this.contacts.forEach(element => {
+                if(!element.name.toLowerCase().includes(this.textsearch)){
+                    element.visible = false
+                }
+                else if(this.textsearch == ""){
+                    element.visible = true
+
+                }
+                else{
+                    element.visible = true
+                }
+                
+            });
+            
+        },
+
         changeContact(index){
             this.activeContact = index;
         },
+
         autoReply(){
             let newMessage = {
                 date: '10/01/2020 15:50:00',
