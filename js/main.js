@@ -3,26 +3,8 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
+        textMessage:"",
         activeContact: 0,
-        arrayobj:[
-            {
-                name: 'Federico',
-                avatar: '_7',
-                visible: true,
-                messages: [
-                                {
-                                    date: '10/01/2020 15:30:55',
-                                    message: 'Fai gli auguri a Martina che è il suo compleanno!',
-                                    status: 'sent'
-                                },
-                                {
-                                    date: '10/01/2020 15:50:00',
-                                    message: 'Grazie per avermelo ricordato, le scrivo subito!',
-                                    status: 'received'
-                                }
-                            ],
-            }
-        ],
         contacts: [
             {
                 name: 'Michele',
@@ -192,18 +174,32 @@ const { createApp } = Vue
     methods:{
         changeContact(index){
             this.activeContact = index;
+        },
+        autoReply(){
+            let newMessage = {
+                date: '10/01/2020 15:50:00',
+                message: "Ok!",
+                status: 'received'
+            }
+            this.contacts[this.activeContact].messages.push(newMessage);
+
+        },
+        addnewMessage(){
+            if(this.textMessage === ""){
+
+            }
+            else{
+                let newMessage = {
+                    date: '10/01/2020 15:50:00',
+                    message: this.textMessage,
+                    status: 'sent'
+                }
+                this.contacts[this.activeContact].messages.push(newMessage);
+                this.textMessage = "";
+                setTimeout(this.autoReply,1000)
+
+            }
         }
 
-
-        /* controllo(index){
-           if(this.contacts[index].visible === true){
-            this.contacts[index].visible = false
-            console.log(this.contacts[index].visible)
-           }
-           else{
-            this.contacts[index].visible = true
-            console.log(this.contacts[index].visible)
-           }   
-        } */
     }
   }).mount('#app')
