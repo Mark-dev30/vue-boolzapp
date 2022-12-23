@@ -1,5 +1,7 @@
 const { createApp } = Vue
 
+    const dt = luxon.DateTime;
+
   createApp({
     data() {
       return {
@@ -173,7 +175,7 @@ const { createApp } = Vue
       }
     },
     methods:{
-
+        
         searchContact(){
             this.contacts.forEach(element => {
                 if(!element.name.toLowerCase().includes(this.textsearch)){
@@ -196,8 +198,9 @@ const { createApp } = Vue
         },
 
         autoReply(){
+            let nowdate = dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
             let newMessage = {
-                date: '10/01/2020 15:50:00',
+                date: nowdate,
                 message: "Ok!",
                 status: 'received'
             }
@@ -209,8 +212,9 @@ const { createApp } = Vue
 
             }
             else{
+                let nowdate = dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
                 let newMessage = {
-                    date: '10/01/2020 15:50:00',
+                    date: nowdate,
                     message: this.textMessage,
                     status: 'sent'
                 }

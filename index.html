@@ -45,6 +45,7 @@
                                 <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="textsearch" @keyup="searchContact">
                             </div>
                         </div>
+                        <!-- CONTENT CONTSCTS -->
                         <div class="content-contacts w-100">
                             <div v-for="(contact, index) in contacts">
                                 <div class="contact flex"  @click="changeContact(index)" v-if="contact.visible == true"  >
@@ -52,11 +53,11 @@
                                         <img :src="`./img/avatar${contact.avatar}.jpg`" :alt="`avatar${contact.avatar}`">
                                         <div class="desc-contact">
                                             <h3>{{ contact.name }}</h3>
-                                            <p>Ultimo messaggio inviato</p>
+                                            <p>{{ contacts[index].messages[contacts[index].messages.length-1].message }}</p>
                                         </div>
                                     </div>
                                     <div class="hour">
-                                        <span>12:00</span>
+                                        <span>{{ contacts[index].messages[contacts[index].messages.length-1].date.substr(11,18) }}</span>
                                     </div>
                                 </div> 
                             </div>   
@@ -71,7 +72,7 @@
                                 <img :src="`./img/avatar${contacts[activeContact].avatar}.jpg`" alt="avatar1">
                                 <div class="desc-contact">
                                     <h3>{{contacts[activeContact].name}}</h3>
-                                    <p>Ultimo accesso oggi alle 12.00</p>
+                                    <p>Ultimo accesso oggi alle {{ contacts[activeContact].messages[contacts[activeContact].messages.length-1].date.substr(11,18) }}</p>
                                 </div>
                             </div>
                             <div class="icon-user">
@@ -89,7 +90,7 @@
                                             <p>{{curentmessage.message}}</p>
                                         </div>
                                         <div class="hour-message">
-                                            <span>15:30</span>
+                                            <span>{{curentmessage.date}}</span>
                                         </div>
                                         
                                     </div>
@@ -107,6 +108,7 @@
             </div>
         </div>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.1.1/luxon.min.js" integrity="sha512-hZKz8wkgOcWeZanRioE6H6AC3OJspzJQyDBB5jLoZ1jIKbYDt5MwVIvU703WwE4sjvKZw9uNmmYlt29xKS27RA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript" src="./js/main.js"></script>
     </body>
 </html>
