@@ -182,6 +182,7 @@
     height: calc(100% - 100px);
     background-image: url(../img/mine.jpg);
     justify-content: center;
+    overflow: auto;
 }
 
 .content-message{
